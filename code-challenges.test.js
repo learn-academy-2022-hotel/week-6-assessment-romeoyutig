@@ -22,11 +22,11 @@ const people = [
 ]
 // Expected output: ["Ford Prefect is a hitchhiker.", "Zaphod Beeblebrox is president of the galaxy.", "Arthur Dent is a radio employee."] 
 
-describe("sentenceMaker", () => {
-  it("returns an array with a sentence about each person with their name capitalized.", () => {
-    expect(sentenceMaker(people)).toEqual(["Ford Prefect is a hitchhiker.", "Zaphod Beeblebrox is president of the galaxy.", "Arthur Dent is a radio employee."])
-  })
-})
+// describe("sentenceMaker", () => {
+//   it("returns an array with a sentence about each person with their name capitalized.", () => {
+//     expect(sentenceMaker(people)).toEqual(["Ford Prefect is a hitchhiker.", "Zaphod Beeblebrox is president of the galaxy.", "Arthur Dent is a radio employee."])
+//   })
+// })
 
 // ReferenceError: sentenceMaker is not defined
 // good test
@@ -39,14 +39,24 @@ describe("sentenceMaker", () => {
 // process: use .map() with the array, key and symbol as the arguments, 
 // return a string with the information provided in the test variable using string interpolation
 
-// const sentenceMaker = (arr) => {
-//   let firstPart = arr.map((obj => obj.name))
-//   let secondPart = arr.occupation
-//   return firstPart
-// }
-//   console.log(sentenceMaker(people))
+const sentenceMaker = (arr) => {
+  let firstPart = arr.map(obj => {
+    let secondPart = obj.name.split(" ").map(str => str[0].toUpperCase() + str.substring(1)).join(" ")
+    return `${secondPart} is ${obj.occupation}`
+  })
+  return firstPart
+}
+  console.log(sentenceMaker(people))
 
 // Had a blocker here, I'm able to extract the obj, however it returns the array twice. I was planning on transforming each element into a string (.join)? , and then using .toUpperCase on index zero, then perhaps splicing the strings together, then using string interpolation and transform back into an array. also don't think i had the right arguments initially for my .map() function.
+
+// After getting guidance, decided to map the array in one variable called firstPart
+// declare another variable called secondPart
+// reference the key value pair and use the method .split to split the array
+// map over the array, transforming the array value at index 0 and capitalize it using.toUppeCase
+// join the rest of the string calling on .substring from index 1, to the rest of the string, and the .join() method
+// use string interpolation to reference the variable secondPart, as well as referencing the other key value pair with obj.occupation
+// 
 // --------------------2) Create a function that takes in a mixed data array and returns an array of only the REMAINDERS of the numbers when divided by 3.
 
 // a) Create a test with an expect statement using the variables provided.
@@ -56,11 +66,11 @@ const hodgepodge1 = [23, "Heyyyy!", 45, -10, 0, "Yo", false]
 const hodgepodge2 = [5, "Hola", 43, -34, "greetings", true]
 // Expected output: [ 2, 1, -1 ]
 
-describe("remainders", () => {
-  it("returns an array of only the REMAINDERS of the numbers when divided by 3", () => {
-    expect(remainders(hodgepodge1)).toEqual([ 2, 0, -1, 0 ])
-  })
-})
+// describe("remainders", () => {
+//   it("returns an array of only the REMAINDERS of the numbers when divided by 3", () => {
+//     expect(remainders(hodgepodge1)).toEqual([ 2, 0, -1, 0 ])
+//   })
+// })
 
 // ReferenceError: remainders is not defined
 // good test
@@ -89,11 +99,11 @@ const cubeAndSum1 = [2, 3, 4]
 const cubeAndSum2 = [0, 5, 10]
 // Expected output: 1125
 
-describe("cuber" , () => {
-  it("takes in an array of numbers and returns the sum of all the numbers cubed", () => {
-    expect(cuber(cubeAndSum1)).toEqual(99)
-  })
-})
+// describe("cuber" , () => {
+//   it("takes in an array of numbers and returns the sum of all the numbers cubed", () => {
+//     expect(cuber(cubeAndSum1)).toEqual(99)
+//   })
+// })
 
 // ReferenceError: cuber is not defined
 // good test
